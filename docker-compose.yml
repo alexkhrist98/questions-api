@@ -1,0 +1,17 @@
+#Этот файл содержит конфигурацию проекта. Он включает в себя
+#database - postgresql базу данный
+#questions-api - API
+
+version: "3"
+services:
+  database:
+    image: postgres
+    volumes: 
+      - ./pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB:questions-api-db #Это значение создаёт базу данных с указаным именем
+      - POSTGRES_USER:testuser #Это значение создаёт пользователя с заданным именем
+      - POSTGRES_PASSWORD:12345 #ВАЖНО! Это значение необходимо изменить, выбрав более стойкий пароль
+    ports:
+      - 5432:5432
+    
