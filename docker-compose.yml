@@ -1,5 +1,5 @@
-#Этот файл содержит конфигурацию проекта. Он включает в себя
-#database - postgresql базу данный
+#Этот файл содержит конфигурацию докер контейнеров для
+#database - база данных postgresql
 #questions-api - API
 
 version: "3"
@@ -9,9 +9,8 @@ services:
     volumes: 
       - ./pgdata:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB:questions-api-db #Это значение создаёт базу данных с указаным именем
-      - POSTGRES_USER:testuser #Это значение создаёт пользователя с заданным именем
-      - POSTGRES_PASSWORD:12345 #ВАЖНО! Это значение необходимо изменить, выбрав более стойкий пароль
+      - POSTGRES_DB=questions-api-db #Эта переменная задаёт имя базы данных
+      - POSTGRES_USER=testuser #Эта переменная создаёт суперпользователя с указанным именем
+      - POSTGRES_PASSWORD=12345 #ВАЖНО! Это пароль суперпользователя базы данных. Это значение нужно изменить перед запуском бд
     ports:
       - 5432:5432
-    
