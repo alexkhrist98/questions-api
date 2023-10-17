@@ -8,7 +8,7 @@ class QuestionsPost(BaseModel):
     """
     questions_num:int = Field(ge=1)
 
-class Question(BaseModel):
+class QuestionPydantic(BaseModel):
     """Этот класс содержит в себе сериализатор для данных из БД. 
     Схема данных в бд находится в файле models.py
     """
@@ -16,5 +16,9 @@ class Question(BaseModel):
     question_text: str
     answer_text:str
     creation_date:datetime
+
+    class Config:
+        orm_mode = True
+        from_attributes = True
     
     

@@ -14,4 +14,6 @@ class Question(Base):
     question_text = Column(Text, index=True, unique=True)
     answer_text = Column(Text)
     creation_date = Column(DateTime)
+
+
     
