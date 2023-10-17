@@ -5,6 +5,7 @@
 from abc import ABC, abstractmethod
 import os
 from sqlalchemy import create_engine
+from sqlalchemy.exc import NoResultFound
 from sqlalchemy.orm import sessionmaker
 from domains.models import Base, Question
 
@@ -26,6 +27,10 @@ class BaseRepository(ABC):
     
     @abstractmethod
     def insert_many(self):
+        raise NotImplementedError(f"Метод пока не определён для {__class__.__name__}")
+    
+    @abstractmethod
+    def fetch_by_id(self):
         raise NotImplementedError(f"Метод пока не определён для {__class__.__name__}")
     
 class AlchemyBaseRepository(BaseRepository):
@@ -68,9 +73,13 @@ class AlchemyBaseRepository(BaseRepository):
 
         Returns:
             modelobject: Объект класса, переданого в аргументе model
+            пустой словарь: при возникновении исключения NoResultFound
         """        
-        result = self.session.query(model).one()
-        return result
+        try:
+            result = self.session.query(model).first()
+            return result
+        except NoResultFound:
+            return {}
     
     def insert_one(self, model):
         """_Этот метод позволяет добавить данные в БД при помощи ORM 
@@ -83,6 +92,13 @@ class AlchemyBaseRepository(BaseRepository):
         """        
         self.session.add(model)
         return self.session.commit()
+    
+    def fetch_by_id(self, model, id: int):
+        try:
+            result = self.session.query(model).filter_by(id=id).one()
+            return result
+        except NoResultFound:
+            return {}
     
     def insert_many(self):
         return super().insert_many()
