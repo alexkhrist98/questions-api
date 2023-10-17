@@ -35,13 +35,16 @@ cd questions-api
 python -m virtualenv venv
 ```
 Для активации виртуального окружения нужно ввести следующие команды:
+
 **Для Windows**
 ```console
-venv\scripts\activate```
+venv\scripts\activate
+```
 
 __Для Linux__
 ```console
-source/bin/activate```
+source/bin/activate
+```
 
 После этого слева от рабочей дериктории появится обозначение **(venv)**, что свидетельствует об активации виртуального окружения.
 
@@ -49,7 +52,8 @@ source/bin/activate```
 Чтобы иметь возможность работать с исходным кодом проекта, необходимо установить зависимости. Для этого используйте следующую команду:
 
 ```console
-pip install -r requirements.txt```
+pip install -r requirements.txt
+```
 
 ### 4. Настройте параметры контейнеров Docker. 
 Для того, чтобы развернуть проект локально для тестирования или на сервере, необходимо настроить некоторые параметры контейнеров. Для этого можно воспользоваться файлом docker-compose.yml.
@@ -73,7 +77,8 @@ pip install -r requirements.txt```
 Проверьте, что Docker и Docker Compose запущены, после чего введите команду:
 
 ```console
-docker-compose up```
+docker-compose up
+```
 
 Дождитесь, пока закончится сборка образов и развёртывание контейнеров.
 
@@ -95,4 +100,5 @@ curl -X 'POST' \
   "questions_num": 1
 }'
 ```
+
 
