@@ -3,6 +3,7 @@
 """
 
 from sqlalchemy import desc
+from sqlalchemy.exc import NoResultFound
 from domains.models import Base, Question
 from .base import AlchemyBaseRepository
 
@@ -26,5 +27,11 @@ class QuestionsRepository(AlchemyBaseRepository):
     
     def fetch_most_recent(self):
         return self.session.query(self.model).order_by(desc(self.model.id)).first()
+    
+    def fetch_by_api_id(self, id:int):
+        try:
+            return self.session.query(self.model).filter_by(api_id=id).first()
+        except NoResultFound:
+            return {}
     
 
