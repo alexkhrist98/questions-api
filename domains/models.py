@@ -10,7 +10,8 @@ Base = declarative_base()
 class Question(Base):
     """Этот класс представляет собой модель, отражающую таблицу"""
     __tablename__ = "questions"
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True) #внутренний id вопроса
+    api_id = Column(Integer) #id, поступающий от API 
     question_text = Column(Text, index=True, unique=True)
     answer_text = Column(Text)
     creation_date = Column(DateTime)

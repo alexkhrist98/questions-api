@@ -13,6 +13,7 @@ class QuestionPydantic(BaseModel):
     Схема данных в бд находится в файле models.py
     """
     id:int
+    api_id:int
     question_text: str
     answer_text:str
     creation_date:datetime
