@@ -10,6 +10,7 @@
 - SQLAlchemy;
 - PostgreSQL;
 - HTTPX;
+- Alembic;
 - Docker Compose.
 
 ## Как запустить проект?
