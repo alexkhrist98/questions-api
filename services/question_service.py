@@ -62,7 +62,7 @@ class QuestionsService(BaseService):
         new_questions = await self.jserviceapi.get_random_question(count=count)
         result = []
         for i, question in enumerate(new_questions):
-            if not self.repo.fetch_by_id(question.get("id")):
+            if not self.repo.fetch_by_api_id(question.get("id")):
                 result.append(question)
         return result
     
